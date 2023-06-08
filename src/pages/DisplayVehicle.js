@@ -57,27 +57,47 @@
 
 import { Grid, Paper, Container } from "@mui/material";
 import { useEffect, useState } from "react";
+import {useLocation} from "react-router-dom";
 import VehicleCard from "./VehicleCard";
 
 function DisplayVehicles() {
+    const location = useLocation();
+    const id = location.state.id;
+
     const [vehicles, setVehicles] = useState([
-        { name: "Biruke", school: "4 Kilo", _id: 1 },
+
     ]);
 
-    useEffect(() => {
-        console.log("Use Effect Raned");
-        const source = new EventSource("http://localhost:3001/updates");
-        source.addEventListener("database-change", (event) => {
-            const { array } = JSON.parse(event.data);
-            setVehicles(array);
-            console.log("I have set my notes");
-            console.log("Notes" + vehicles);
-        });
 
-        return () => {
-            source.close();
-        };
-    });
+
+
+    // useEffect(() => {
+    //     console.log("Use Effect Raned");
+    //     fetch('http://localhost:3001/').then((data) =>data.json()).then((result)=> {
+    //             console.log(result)
+    //             const filteredResult = result.filter(item => item._id === id)
+    //             console.log("The result is "+result)
+    //             console.log("THe filterdResult is "+filteredResult)
+    //
+    //             setVehicles(filteredResult)
+    //         }
+    //     // console.log(result)
+    //     // console.log("use fetch rained")
+    //     )
+    //
+    //     const source = new EventSource("http://localhost:3001/updates");
+    //     source.addEventListener("database-change", (event) => {
+    //         const { array } = JSON.parse(event.data);
+    //         const filiterdArray = array.filter(item => item._id === id)
+    //         setVehicles(filiterdArray);
+    //         console.log("I have set my notes");
+    //         console.log("Notes" + vehicles);
+    //     });
+    //
+    //     return () => {
+    //         source.close();
+    //     };
+    // },[]);
 
     return (
         <Container>

@@ -1,8 +1,10 @@
 import React, {useEffect} from "react";
 import {Box, Toolbar, AppBar, Stack, Typography,IconButton,Button} from "@mui/material"
 import LocationSearchingIcon from '@mui/icons-material/LocationSearching';
+import {useHistory} from "react-router-dom";
 
 function MuiAppBar(){
+    const history = useHistory();
 
     return (
         <Box>
@@ -24,7 +26,11 @@ function MuiAppBar(){
                 <Stack direction={"row"} spacing={2}>
                     <Button color={"inherit"}>Profile</Button>
                     <Button color={"inherit"}>About</Button>
-                    <Button color={"inherit"}>LogOut</Button>
+                    <Button color={"inherit"} onClick={
+                        function(){
+                            history.replace('/');
+                        }
+                    }>LogOut</Button>
                 </Stack>
             </Toolbar>
 
